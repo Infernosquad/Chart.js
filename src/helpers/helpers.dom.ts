@@ -241,7 +241,11 @@ export function retinaScale(
     chart.currentDevicePixelRatio = pixelRatio;
     canvas.height = deviceHeight;
     canvas.width = deviceWidth;
-    chart.ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    try {
+      chart.ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    } catch (e) {
+      // continue regardless of error
+    }
     return true;
   }
   return false;
